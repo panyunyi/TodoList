@@ -61,7 +61,7 @@
           <li v-for="todo in filteredTodos" class="todo" :key="todo.objectId" :class="{ completed: todo.done, editing: todo == editedTodo }">
             <div class="view">
               <input class="toggle" type="checkbox" v-model="todo.done" @change="doneEdit(todo)">
-              <label @dblclick="editTodo(todo)">号码：{{ todo.phone }} 密码：{{ todo.pwd }} 备注：{{ todo.content }}</label>
+              <label @dblclick="">号码：{{ todo.phone }} 密码：{{ todo.pwd }} 备注：{{ todo.content }}</label>
               <button class="destroy" @click="removeTodo(todo)"></button>
             </div>
             <input class="edit" type="text" v-model="todo.content" v-todo-focus="todo == editedTodo" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)"
