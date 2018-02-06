@@ -1,0 +1,78 @@
+<!doctype html>
+<html data-framework="vue">
+
+<head>
+  <meta charset="utf-8">
+  <title>PyyTodo • Vue.js</title>
+  <link rel="stylesheet" href="https://unpkg.com/todomvc-app-css/index.css">
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+
+    .userinfo {
+      position: absolute;
+      bottom: -46px;
+      width: 100%;
+      font-size: 100%;
+    }
+
+    #login input {
+      padding: 16px;
+      text-align: center;
+    }
+
+    #login input:disabled {
+      color: #ddd;
+      cursor: not-allowed;
+    }
+
+    #login .control {
+      display: flex;
+    }
+
+    #login-button {
+      background-color: #fafafa;
+    }
+    .todoapp{width: 100%}
+  </style>
+</head>
+
+<body>
+  <section class="todoapp">
+    <h1>Todo List</h1>
+    <form action="#" id="login" v-on:submit.prevent="login" v-if="!user" v-cloak>
+      <input v-model="username" autofocus required class="new-todo" placeholder="Username">
+      <input type="password" v-model="password" required class="new-todo" placeholder="Password">
+      <div class="control">
+        <input type="submit" value="Login" class="new-todo" id="login-button">
+        <input type="button" @click="signup" value="Signup" class="new-todo">
+      </div>
+    </form>
+
+  </section>
+  <footer class="info">
+    <p> Powered by
+      <a href="javascript:void(0)" onMouseOut="hideImg()" onmouseover="showImg()">PYY</a>
+    </p>
+
+    <div id="wxImg" style="display:none;height:50px;position:absolute;">
+      <img style="width:50%" src="wx.jpg">
+    </div>
+  </footer>
+  
+  <script src="https://unpkg.com/leancloud-storage@^3.0.0-beta.3/dist/av-live-query-min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="login.js"></script>
+  <script type="text/javascript">  
+    function showImg() {
+      document.getElementById("wxImg").style.display = 'block';
+    }
+    function hideImg() {
+      document.getElementById("wxImg").style.display = 'none';
+      
+    }  
+  </script>
+</body>
+
+</html>

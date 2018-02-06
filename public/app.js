@@ -136,6 +136,7 @@ var app = new Vue({
         fetchTodos: function (id) {
             const query = new AV.Query(Todo)
                 .equalTo('user', AV.Object.createWithoutData('User', id))
+                .equalTo('isDel',false)
                 .descending('createdAt')
             const updateTodos = this.updateTodos.bind(this)
             return AV.Promise.all([query.find().then(updateTodos), query.subscribe()])
@@ -192,6 +193,7 @@ var app = new Vue({
                 phone: phone,
                 pwd: pwd,
                 done: false,
+                isDel:false,
                 user: AV.User.current()
             }).setACL(acl).save().then(function (todo) {
                 this.todos.push(todo.toJSON())
@@ -203,7 +205,9 @@ var app = new Vue({
 
         removeTodo: function (todo) {
             AV.Object.createWithoutData('Todo', todo.objectId)
-                .destroy()
+                .save({
+                    isDel:true
+                })
                 .then(function () {
                     this.todos.splice(this.todos.indexOf(todo), 1)
                 }.bind(this))
